@@ -1,0 +1,138 @@
+import java.util.Scanner;
+class A 
+{
+    String modelname;
+    int modelNumber;
+    String color;
+    int CC;
+    int mileage;
+    int maxSpeed;
+    int Price;
+    String Display;
+    String emi;
+    A(String modelname,int modelNumber,String color,int CC,int mileage,int maxSpeed,String Display,String emi)
+    {
+        this.modelname=modelname;
+        this.modelNumber=modelNumber;
+        this.color=color;
+        this.CC=CC;
+        this.mileage=mileage;
+        this.maxSpeed=maxSpeed;
+        this.Display=Display;
+        this.emi=emi;
+    }
+}
+class B 
+{
+    void display(A arg)
+    {
+        System.out.println("ModelName="+arg.modelname);
+        System.out.println("ModelNumber="+arg.modelNumber);
+        System.out.println("Available in"+" "+arg.color+" "+"colors");
+        System.out.println("CC="+arg.CC+"cc");
+        System.out.println("Mileage="+arg.mileage+"Kilometers");
+        System.out.println("MaxSpeed="+arg.maxSpeed+"KmpH");
+        System.out.println("Display="+arg.Display);
+        System.out.println("EMI="+arg.emi);
+    }
+}
+class Bike
+{
+    public static void main(String[]args)
+    {
+        Scanner s=new Scanner(System.in);
+        System.out.println("---------------------SRINIVASULU BIKES SHOWROOM--------------------------");
+        System.out.println("Bikes in |STOCK|");
+        System.out.println("Enter your favourite bike:");
+        String bikeName=s.next();
+    A a1=new A("Pulsor-250",9237474,"black,red",250,60,180,"Digital","Available");
+    A a2=new A("Pulsor-220",9237489,"black,red,blue",220,65,160,"Digital","Available");
+    A a3=new A("Glamour-new",9237491,"red,blue",180,70,150,"Digital","Not Available");
+    A a4=new A("TVS-160",9237417,"green,black",100,85,90,"Analog","Available");
+    A a5=new A("Splendor-Hero",9237449,"black",150,80,120,"Analog","Not Available");
+    A a6=new A("Apache-220",9237470,"yellow,blue",220,50,150,"Digital","Not Available");
+    A a7=new A("KTM-Duke",9237494,"orange,white,black",210,40,170,"Digital","Not Available");
+    A a8=new A("Bajaj_shine",9237187,"black,brown",220,60,160,"Analog","Not Available");
+    A a9=new A("Bullet-classic",9237428,"maroon,gold,black",250,45,180,"Analog","Not Available");
+    A a10=new A("Jawa",9237471,"maroon",200,60,170,"Analog","Not Available");
+    B b1=new B();
+    if(bikeName.equals("pulsor"))
+    {
+    System.out.println("--------------------------------------------------");
+    System.out.println("Details of"+" "+"--|"+bikeName+"|--"+" "+"bike models available in our showroom");
+    System.out.println("--------------------------------------------------");
+    b1.display(a1);
+    System.out.println("----------------------");
+    b1.display(a2);
+    System.out.println("----------------------");
+    }
+    else if(bikeName.equals("glamour"))
+    {
+    System.out.println("--------------------------------------------------");
+    System.out.println("Details of"+" "+"--|"+bikeName+"|--"+" "+"bike models available in our showroom");
+    System.out.println("--------------------------------------------------");
+    b1.display(a3);
+    System.out.println("----------------------");
+    }
+    else if(bikeName.equals("tvs"))
+    {
+    System.out.println("--------------------------------------------------");
+    System.out.println("Details of"+" "+"--|"+bikeName+"|--"+" "+"bike models available in our showroom");
+    System.out.println("--------------------------------------------------");
+    b1.display(a4);
+    System.out.println("----------------------");
+    }
+    else if(bikeName.equals("splendor"))
+    {
+    System.out.println("--------------------------------------------------");
+    System.out.println("Details of"+" "+"--|"+bikeName+"|--"+" "+"bike models available in our showroom");
+    System.out.println("--------------------------------------------------");
+    b1.display(a5);
+    System.out.println("----------------------");
+    }
+    else if(bikeName.equals("apache"))
+    {
+    System.out.println("--------------------------------------------------");
+    System.out.println("Details of"+" "+"--|"+bikeName+"|--"+" "+"bike models available in our showroom");
+    System.out.println("--------------------------------------------------");
+    b1.display(a6);
+    System.out.println("----------------------");
+    }
+    else if(bikeName.equals("duke"))
+    {
+    System.out.println("--------------------------------------------------");
+    System.out.println("Details of"+" "+"--|"+bikeName+"|--"+" "+"bike models available in our showroom");
+    System.out.println("--------------------------------------------------");
+    b1.display(a7);
+    System.out.println("----------------------");
+    }
+    else if(bikeName.equals("shine"))
+    {
+    System.out.println("--------------------------------------------------");
+    System.out.println("Details of"+" "+"--|"+bikeName+"|--"+" "+"bike models available in our showroom");
+    System.out.println("--------------------------------------------------");
+    b1.display(a8);
+    System.out.println("----------------------");
+    }
+    else if(bikeName.equals("bullet"))
+    {
+    System.out.println("--------------------------------------------------");
+    System.out.println("Details of"+" "+"--|"+bikeName+"|--"+" "+"bike models available in our showroom");
+    System.out.println("--------------------------------------------------");
+    b1.display(a9);
+    System.out.println("----------------------");
+    }
+    else if(bikeName.equals("jawa"))
+    {
+    System.out.println("--------------------------------------------------");
+    System.out.println("Details of"+" "+"--|"+bikeName+"|--"+" "+"bike models available in our showroom");
+    System.out.println("--------------------------------------------------");
+    b1.display(a10);
+    System.out.println("----------------------");
+    }
+    else
+    {
+        System.out.println("Mentiond bikeName"+" "+"--"+bikeName+"--"+" "+"is not available in our showroom");
+    }
+    }
+}
