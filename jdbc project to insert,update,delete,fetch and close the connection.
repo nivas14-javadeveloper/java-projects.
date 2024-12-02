@@ -1,0 +1,250 @@
+package com.jdbcpostgres.app3;
+import java.util.*;
+import java.sql.*;
+class school
+{
+    private static String url="jdbc:postgresql://localhost:5432/school";
+    private static String username="postgres";
+    private static String password="123";
+    private static Connection con;
+    static 
+    {
+        try
+        {
+            Class.forName("org.postgresql.Driver");
+            con=DriverManager.getConnection(url,username,password);
+        }   
+        catch(ClassNotFoundException e)
+        {
+            
+        }
+        catch(SQLException e) 
+        {
+            
+        }
+    }
+    Scanner s=new Scanner(System.in);
+    public void insert()
+    {
+    	System.out.println("==================================INSERT values into table======================================");
+        System.out.println("enter id");
+        int id=s.nextInt();
+        System.out.println("enter moviename");
+        String moviename=s.next();
+        System.out.println("enter hero");
+        String hero=s.next();
+        System.out.println("enter heroine");
+        String heroine=s.next();
+        System.out.println("enter rating");
+        int rating=s.nextInt();
+        String sql="insert into movies values(?,?,?,?,?)";
+        try 
+        {
+            PreparedStatement p=con.prepareStatement(sql);
+            p.setInt(1,id);
+            p.setString(2,moviename);
+            p.setString(3,hero);
+             p.setString(4,heroine);
+             p.setInt(5,rating);
+              int num=p.executeUpdate();
+              if(num!=0)
+              {
+            	System.out.println(num+" "+"is inserted");
+              }
+              else System.out.println(num+" "+"not inserted");
+        }
+        catch(SQLException e)
+        {
+            
+        }
+    }
+    public void update()
+    {
+    	System.out.println("==============================UPDATE values to the table=================================");
+        try 
+        {
+            System.out.println("enter 1 to update name column");
+            System.out.println("enter 2 to update hero column");
+            System.out.println("enter 3 to update heroine column");
+            System.out.println("enter 4 to update rating column");
+            int toupdate=s.nextInt();
+            switch(toupdate)
+            {
+                case 1:
+                    System.out.println("enter movie name to update it");
+                    String moviename=s.next();
+                    System.out.println("enter id number for which row to be updated");
+                    int id=s.nextInt();
+            String sql1="UPDATE movies set name=? where id=?";
+            PreparedStatement p=con.prepareStatement(sql1);
+            p.setString(1,moviename);
+            p.setInt(2,id);
+            int num=p.executeUpdate();
+              if(num!=0)
+              {
+            	System.out.println(num+" "+"is inserted");
+              }
+              else System.out.println(num+" "+"not inserted");
+                break;
+                case 2:
+                    System.out.println("enter hero to update it");
+                    String hero=s.next();
+                    System.out.println("enter id number for which row to be updated");
+                    int id1=s.nextInt();
+            String sql2="UPDATE movies set hero=? where id=?";
+            PreparedStatement p1=con.prepareStatement(sql2);
+            p1.setString(1,hero);
+            p1.setInt(2,id1);
+            int num1=p1.executeUpdate();
+              if(num1!=0)
+              {
+            	System.out.println(num1+" "+"is inserted");
+              }
+              else System.out.println(num1+" "+"not inserted");
+                break;
+                case 3:
+                    System.out.println("enter heroine to update it");
+                    String heroine=s.next();
+                    System.out.println("enter id number for which row to be updated");
+                    int id2=s.nextInt();
+            String sql3="UPDATE movies set heroine=? where id=?";
+            PreparedStatement p2=con.prepareStatement(sql3);
+            p2.setString(1,heroine);
+            p2.setInt(2,id2);
+            int num2=p2.executeUpdate();
+              if(num2!=0)
+              {
+            	System.out.println(num2+" "+"is inserted");
+              }
+              else System.out.println(num2+" "+"not inserted");
+                break;
+                case 4:
+                    System.out.println("enter rating to update it");
+                    int rating=s.nextInt();
+                    System.out.println("enter id number for which row to be updated");
+                    int id3=s.nextInt();
+            String sql4="UPDATE movies set rating=? where id=?";
+            PreparedStatement p3=con.prepareStatement(sql4);
+            p3.setInt(1,rating);
+            p3.setInt(2,id3);
+            int num3=p3.executeUpdate();
+              if(num3!=0)
+              {
+            	System.out.println(num3+" "+"is inserted");
+              }
+              else System.out.println(num3+" "+"not inserted");
+                break;
+            default:
+            System.out.println("choose numbers in given range");
+            break;
+            }
+        }
+        catch(SQLException e){
+            
+        }
+    }
+    public void delete()
+    {
+        System.out.println("==========================DELETE a row in table=============================");
+        String sql="DELETE FROM movies where id=?";
+        System.out.println("enter id to delete a row");
+        int id=s.nextInt();
+        try 
+        {
+        PreparedStatement p=con.prepareStatement(sql);
+        p.setInt(1,id);
+        int num=p.executeUpdate();
+              if(num!=0)
+              {
+            	System.out.println(num+" "+"is deleted");
+              }
+              else System.out.println(num+" "+"not deleted");
+        }
+        catch(SQLException e)
+        {
+            
+        }
+    }
+    public void fetch()
+    {
+        System.out.println("============================FETCHING data in a table==========================================");
+        try 
+        {
+            Statement s=con.createStatement();
+            String sql="SELECT * FROM movies";
+            ResultSet rs=s.executeQuery(sql);
+            while(rs.next())
+            {
+                int id=rs.getInt(1);
+                String name=rs.getString(2);
+                String hero=rs.getString(3);
+                String heroine=rs.getString(4);
+                int rating=rs.getInt(5);
+                System.out.println("Id -> "+ id);
+                System.out.println("Name -> "+name);
+                 System.out.println("Hero -> "+hero);
+                  System.out.println("Heroine -> "+heroine);
+                   System.out.println("Rating -> "+rating);
+                   System.out.println("===========================================================================");
+            }
+        }
+        catch(SQLException e){
+            
+        }
+    }
+    public void close()
+    {
+        try 
+        {
+            con.close();
+        }
+        catch(SQLException e)
+        {
+            System.out.println("==============================connection closed===============================");
+        }
+    }
+}
+class App3
+{
+    public static void main(String[]args)
+    {
+        school sc=new school();
+        Scanner s1=new Scanner(System.in);
+          System.out.println("enter 1 for inserting values");
+          System.out.println("enter 2 for updating values");
+          System.out.println("enter 3 for deleting values");
+          System.out.println("enter 4 for fetching values");
+          System.out.println("enter 5 to close the conncetion between jdbc and database");
+          int choice=s1.nextInt();
+          switch(choice)
+          {
+              case 1: 
+                  {
+                      sc.insert();
+                      System.out.println("inserted values");
+                      break;
+                  }
+              case 2:
+              {
+                  sc.update();
+                  System.out.println("updated values");
+                  break;
+              }
+              case 3:
+                  sc.delete();
+                  System.out.println("deleted selected rows");
+                  break;
+              case 4:
+                  sc.fetch();
+                  System.out.println("fetching table is done");
+                  break;
+              case 5:
+                  sc.close();
+                  System.out.println("connection is closed successfully.");
+                  break;
+                  default:
+                  break;
+          }
+          
+    }
+}
