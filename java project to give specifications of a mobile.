@@ -1,0 +1,82 @@
+import java.util.Scanner;
+class A 
+{
+    String company;
+    int battery;
+    int  RAM;
+    String processor;
+    String color;
+    int leastprice;
+    int highestprice;
+    A(String c,int b,int r,String p,String co,int lp,int hp)
+    {
+        company=c;
+        battery=b;
+        RAM=r;
+        processor=p;
+        color=co;
+        leastprice=lp;
+        highestprice=hp;
+    }
+    A(A ar)
+    {
+       company=ar.company;
+        battery=ar.battery;
+        RAM=ar.RAM;
+        processor=ar.processor;
+        color=ar.color;
+        leastprice=ar.leastprice;
+        highestprice=ar.highestprice; 
+    }
+}
+class B 
+{
+    Scanner sc=new Scanner(System.in);
+    static A phone()
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Company=");
+        String c=sc.next();
+        System.out.print("Battery=");
+        int  b=sc.nextInt();
+        System.out.print("RAM=");
+        int  r=sc.nextInt();
+        System.out.print("processor=");
+        String p=sc.next();
+        System.out.print("color=");
+        String co=sc.next();
+        System.out.print("enter least price=");
+        int lp=sc.nextInt();
+        System.out.print("enter highest price=");
+        int hp=sc.nextInt();
+        
+        return new A(c,b,r,p,co,lp,hp);
+    }
+     void display(A arg)
+    {
+        System.out.println("Company="+arg.company);
+        System.out.println("Battery="+arg.battery+"mah");
+        System.out.println("RAM="+arg.RAM+"GB");
+        System.out.println("processor="+arg.processor);
+        System.out.println("color="+arg.color);
+        System.out.println("Least price="+arg.leastprice);
+        System.out.println("highest price="+arg.highestprice);
+    }
+}
+class C 
+{
+    public static void main(String[]args)
+    {
+        A a1=B.phone();
+        A a2=new A(a1);
+        A a3=new A(a1);
+        B b1=new B();
+        System.out.println("----------------------------");
+        b1.display(a1);
+        System.out.println("----------------------------");
+        b1.display(a2);
+        System.out.println("----------------------------");
+        b1.display(a3);
+        System.out.println("----------------------------");
+    }
+}
