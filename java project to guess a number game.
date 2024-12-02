@@ -1,0 +1,32 @@
+import java.util.Scanner;
+class A 
+{
+    public static void main(String[]args)
+    {
+        System.out.println("-------------------------NUMBER GUESSING GAME----------------------------");
+        Scanner s=new Scanner(System.in);
+        int n=(int)(Math.random()*9)+1;
+        int score=0;
+        for(int i=3;i>=1;i--)
+        {
+            System.out.println("Enter a number to match the number:");
+            int num=s.nextInt();
+            if(n==num)
+            {
+            score+=10;
+            System.out.println("Hoorah you're guess is correct,you are a luck master.");
+            System.out.println("You scored 10 points.");
+            System.out.println("Remaining chances="+(i-1));
+            System.out.println("=========================================================================");
+            n=(int)(Math.random()*9)+1;
+            }
+            else
+            {
+                System.out.println("Not a problem a bird cannot be shot at first try,try ur luck.");
+                 System.out.println("Remaining chances="+(i-1));
+                 System.out.println("======================================================================");
+            }
+        }
+        System.out.println("Your final score is"+" "+score);
+    }
+}
